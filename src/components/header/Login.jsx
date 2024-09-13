@@ -1,7 +1,7 @@
 import React from 'react';
-import './button.css';
+import './login.css';
 
-function Button() {
+function Login() {
   return (
     <nav className='header-nav ms-auto d-flex align-items-center'>
             {/* microphone connection */}
@@ -13,4 +13,4 @@ function Button() {
   )
 }
 
-export default Button
+export default Login

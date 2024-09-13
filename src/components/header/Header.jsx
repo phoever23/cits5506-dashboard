@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 import Logo from './Logo';
-import Button from './Button';
+import Login from './Login';
 
 function Header() {
   return (
@@ -9,7 +9,7 @@ function Header() {
     {/* {logo} */}
     <Logo />
     {/* {mic and login in button} */}
-    <Button />
+    <Login />
     </header>
   )
 }

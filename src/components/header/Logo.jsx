@@ -1,6 +1,6 @@
  import React from 'react';
 import './logo.css';
-import smartLogo from '../images/logo.png'
+import smartLogo from '../../images/logo.png'
 
 function Logo() {
   return (
