@@ -1,20 +1,20 @@
 import React from 'react';
 import './pageTitle.css'
+import mask from '../../images/Mask-Detection.png'
+
 
 function PageTitle() {
   return (
-    <div className='pagetitle'>
-      <h1>Dashboard</h1>
-      <nav>
-        <ol className='breadcrumb'>
-          <li className="breadcrumb-item">
-            <a href='/'>
-              <i className="bi bi-house-door"></i>
-            </a>
-          </li>
-          <li className='breadcrumb-item active'>Dashboard</li>
-        </ol>
-      </nav>
+    <div className="dashboard">
+      <div className="upper-section">
+        <h1>Display real time image/video</h1>
+        <img src={mask} alt="" />
+      </div>
+
+      <div className="lower-section">
+        <div className="text-box"><h2>Temperature: </h2></div>
+        <div className="text-box"><h2>Mask: </h2></div>
+      </div>
     </div>
   )
 }
