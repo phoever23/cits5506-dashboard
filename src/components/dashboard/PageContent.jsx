@@ -1,9 +1,9 @@
 import React from 'react';
-import './pageTitle.css'
+import './pageContent.css'
 import mask from '../../images/Mask-Detection.png'
 
 
-function PageTitle() {
+function PageContent() {
   return (
     <div className="dashboard">
       <div className="upper-section">
@@ -19,4 +19,4 @@ function PageTitle() {
   )
 }
 
-export default PageTitle
+export default PageContent
