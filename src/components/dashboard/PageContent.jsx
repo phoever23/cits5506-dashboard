@@ -1,6 +1,7 @@
 import React from 'react';
 import './pageContent.css'
 import mask from '../../images/Mask-Detection.png'
+import { useEffect, useState } from 'react';
 
 
 function PageContent() {
