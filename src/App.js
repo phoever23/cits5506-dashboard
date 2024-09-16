@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './App.css';
 import Header from './components/header/Header';
 import SideBar from './components/SideBar';
-import Main from './components/main/Main';
+import Main from './components/dashboard/Main';
 
 function App() {
   return (<>
