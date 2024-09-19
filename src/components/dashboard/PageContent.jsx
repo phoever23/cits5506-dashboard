@@ -1,49 +1,72 @@
-import React from 'react';
-import './pageContent.css'
-import mask from '../../images/Mask-Detection.png'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import './pageContent.css';
 
 function PageContent() {
-  const [currentReading, setCurrentReading] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  
+  const [currentReading, setCurrentReading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+
   const fetchData = () => {
-    setIsLoading(true)
-    setError(null)
-    fetch('http://localhost:4000/current_reading')
+    setIsLoading(true);
+    setError(null);
+
+    // Fetch JSON data
+    fetch(`${API_URL}/api/real_time_data.json`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        return res.json()
+        return res.json();
       })
       .then(data => {
-        console.log("Fetched data:", data); // For debugging
-        setCurrentReading(data);
+        console.log("Fetched data:", data);
+        setCurrentReading(data.current_reading);
         setIsLoading(false);
       })
       .catch(e => {
         console.error("Error fetching data:", e);
         setError(e.message);
         setIsLoading(false);
+      });
+
+    // Fetch image
+    fetch(`${API_URL}/api/current_image.png`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.blob();
       })
-  }
-  
+      .then(blob => {
+        const imageUrl = URL.createObjectURL(blob);
+        setImageUrl(imageUrl);
+      })
+      .catch(e => {
+        console.error("Error fetching image:", e);
+        setError(e.message);
+      });
+  };
+
   useEffect(() => {
     fetchData();
     // Set up polling every 5 seconds
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [])
-  
+  }, []);
+
   return (
     <div className="dashboard">
       <div className="upper-section">
         <h1>Real-time Monitoring</h1>
-        <img src={mask} alt="Mask Detection" />
+        {imageUrl ? (
+          <img src={imageUrl} alt="Real-time camera feed" style={{maxWidth: '100%', height: 'auto'}} />
+        ) : (
+          <p>Loading image...</p>
+        )}
       </div>
-      
       <div className="lower-section">
         {isLoading ? (
           <div className="text-box">
@@ -72,7 +95,7 @@ function PageContent() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default PageContent
+export default PageContent;
