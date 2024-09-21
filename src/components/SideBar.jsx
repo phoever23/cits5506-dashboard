@@ -13,14 +13,13 @@ function SideBar({ setView, currentView }) {
       <ul className='sidebar-nav' id='sidebar-nav'>
         {navItems.map((item) => (
           <li key={item.id} className='nav-item'>
-            <a 
-              href='#' 
+            <button
               className={`nav-link ${currentView === item.id ? 'active' : ''}`}
               onClick={() => setView(item.id)}
             >
               <i className={`bi ${item.icon}`}></i>
               <span>{item.label}</span>
-            </a>
+            </button>  
           </li>
         ))}
       </ul>
